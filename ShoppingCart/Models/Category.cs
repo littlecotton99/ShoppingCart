@@ -13,7 +13,7 @@ namespace ShoppingCart.Models
         [Required, MinLength(3, ErrorMessage = "Mini length is 2")]
         [RegularExpression(@"^[a-zA-Z]+$", ErrorMessage = "Name should be letters only")]
         public string Name { get; set; }
-        [Required]
+     //   [Required]
         public string Slug { get; set; }
         public int Sorting { get; set; }
 
