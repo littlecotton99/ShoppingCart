@@ -105,6 +105,28 @@ namespace ShoppingCart.Areas.Admin.Controllers
             }
             return RedirectToAction("Index");
         }
-        //test comments
+        //POST /admin/categories/reorder
+        [HttpPost]
+        public async Task<IActionResult> Reorder(string idsTemp)
+        {
+            string[] ids = idsTemp.Split("id[]=");
+            int count = 1;
+            foreach (var categoryId in ids)
+            {
+                try
+                {
+                    Category category = await context.Categories.FindAsync(Convert.ToInt32(categoryId.Replace("&", "")));
+                    category.Sorting = count;
+                    context.Update(category);
+                    await context.SaveChangesAsync();
+                }
+                catch
+                { }
+                count++;
+            }
+            return Ok();
+
+        }
+
     }
 }

@@ -128,10 +128,10 @@ namespace ShoppingCart.Areas.Admin.Controllers
         //POST /admin/pages/reorder
         [HttpPost]
         
-        public async Task<IActionResult> Reorder(int[] id)
+        public async Task<IActionResult> Reorder(int[] ids)
         {
             int count = 1;
-            foreach (var pageId in id)
+            foreach (var pageId in ids)
             {
                 Page page = await context.Pages.FindAsync(pageId);
                 page.Sorting = count;
